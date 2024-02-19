@@ -1,6 +1,6 @@
 # Ejemplo de carrito de compra con objeto y template
 
-## Todo con fines .....
+## Todo con fines de aprendizaje
 Si ...
 
 #template
