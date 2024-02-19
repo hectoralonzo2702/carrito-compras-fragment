@@ -11,7 +11,7 @@ const btnesBotones = document.querySelectorAll('.card .btn');
 
 //creo el objeto donde se almacenaran los elementos, los cuales tendran formato de objeto{}
 //es decir un objeto que a su vez contendra otro(s) objeto(s)
-const carritoObjeto = {};
+const carritoObjeto = [];
 
 //funcion que agregara  al carrito segun...esta func se dispara al hacer click
 //a cualquiera de los botones
@@ -26,19 +26,23 @@ const agregarAlCarrito = (e) => {
         id: e.target.dataset.fruta,
         cantidad: 1,
     };
-    //necesitms comprobar si este producto{} ya existe en el carritoObjeto{}
-    if (carritoObjeto.hasOwnProperty(producto.titulo)) {
-        producto.cantidad = carritoObjeto[producto.titulo].cantidad + 1;
-
-    };
-
+    //necesitms comprobar si este producto{} ya existe en el array carritoObjeto[]
+    const indice = carritoObjeto.findIndex((item) => item.id === producto.id);
+    console.log(indice);//pintamos...
+    //si no existese entonces con metodo push() empujamos el producto al array carritoObjeto[]
+    if (indice === -1) {
+        carritoObjeto.push(producto)
+    } else {// si ya existise entonce accedemos a indice.cantidad y le sumamos 1
+        carritoObjeto[indice].cantidad ++;
+    }
+    //vemos como carritoArray esta quedando...
+    console.log('carritoArrayXahora: ',carritoObjeto);
 
     //empujemos este objeto producto{} a nuestro objeto carritoObjeto = {}
-    carritoObjeto[producto.titulo] = producto;
-    // console.log(carritoObjeto);
+    
 
     //Una vez agregado un elemento tenemos que llamar a func  pintarCarrito = ()
-    pintarCarrito(producto);// le paso el objeto producto{} como argumento
+    pintarCarrito(carritoObjeto);// le paso el array carritoObjeto[] como argumento
 
 };
 
@@ -49,18 +53,15 @@ btnesBotones.forEach((btn) => console.log('addssd==>',btn) );
 //func agregarAlCarrito(e) indique hacer
 btnesBotones.forEach((btn) => btn.addEventListener('click', agregarAlCarrito));
 
-//func que permitira pintar nto objeto carritoObjeto{} a traves de nto template
-const pintarCarrito = (producto) => {//el objeto producto{} como parametro
-    // console.log('pintando carrito', producto);//PC:en esta linea comprbms q estams recibiendo lo esperado
-    //una vez comprobado haremos el recorrido del objeto carritoObjeto{}
-    
+//func que permitira pintar nto array carritoObjeto[] a traves de nto template
+const pintarCarrito = (array) => {//este array de aca es el array carritoObjeto[] q l paso como Arg
+                                    //cuando en linea 45 llamo la funcion pintarCarrito(carritoObjeto)
+        
     //Se requiere q carrito Ver linea 4 parta vacio
     carrito.textContent = ""; // forzamos a que parta vacio
     
-    //Necesitamos transformar carritoObjeto{} en un array para poder recorrelo con un forEach()
-    //para ello empleamos Object.value()
-    
-    Object.values(carritoObjeto).forEach(item => {
+    // Iteramos el array carritoObjeto[] con un forEach()        
+    array.forEach(item => {
         //clonamos el template "Ver en linea 5 para recordar"
         const clone = template.content.firstElementChild.cloneNode(true);
         //a traves del clone buscamos los elementos estaticos en el index.html, nos valemos de
@@ -76,7 +77,5 @@ const pintarCarrito = (producto) => {//el objeto producto{} como parametro
 
 };
 
-
-
-// console.log('template: ==>>>',template);
-// console.log(btnesBotones);
+console.log('template: ==>>>',template);
+console.log(btnesBotones);
