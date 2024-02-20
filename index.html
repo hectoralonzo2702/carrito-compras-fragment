@@ -25,9 +25,10 @@
 
           <div class="cardbody">
             <h5 class="card-title">Frutilla🍎</h5>
+            <p class="lead">$300</p>
             <button 
             class="btn btn-outline-primary"
-            data-fruta="Frutilla"
+            data-fruta="Frutilla" data-precio="300"
             >Agregar</button>
           </div>
 
@@ -41,8 +42,9 @@
 
           <div class="cardbody">
             <h5 class="card-title">Banana🍌</h5>
+            <p class="lead">$200</p>
             <button class="btn btn-outline-primary"
-            data-fruta="Banana"
+            data-fruta="Banana" data-precio="200"
             >Agregar</button>
           </div>
 
@@ -56,8 +58,9 @@
 
           <div class="cardbody">
             <h5 class="card-title">Manzana🍏</h5>
+            <p class="lead">$100</p>
             <button class="btn btn-outline-primary"
-            data-fruta="Manzana"
+            data-fruta="Manzana" data-precio="100"
             >Agregar</button>
           </div>
 
@@ -75,10 +78,37 @@
       <ul class="list-group" id="carrito"></ul>
     </section>
 
+    <footer id="footer" class="container mt-3">
+    </footer>
+
+    <!-- este elemento por ser un template no se renderiza,
+      debemos empujarlo al <footer id="footer" -->
+    <template id="templateFooter">
+      <div class="card">
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <p class="lead mb-0">Total $ <span>1500</span></p>
+          <button
+            class="btn btn-outline-primary"          
+          >Finalizar compra</button>
+        </div>
+      </div>
+    </template>
+
     <template id="template" >
-      <li class="list-group-items d-flex justify-content-between align-items-center">
+      <li class="list-group-item bg-secondary text-white">
+        <span class="badge bg-primary rounded-pill align-middle">12</span>
         <span class="lead">Frutilla</span>
-        <span class="badge bg-primary rounded-pill">12</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <p class="lead mb-0">Total: $<span>300</span></p>
+
+        </div>
+          <button class="btn btn-sm btn-danger" id="btncomdr1">Quitar</button>
+          <button class="btn btn-sm btn-success" id="btncomdr2">Agregar</button>
+        <div>
+
+        </div>
       </li>
     </template>
 
